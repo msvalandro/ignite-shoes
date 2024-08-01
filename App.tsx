@@ -8,9 +8,12 @@ import { THEME } from './src/theme';
 import { Loading } from './src/components/Loading';
 
 import { CartContextProvider } from './src/contexts/CartContext';
-import { OneSignal } from 'react-native-onesignal';
+import { OneSignal,LogLevel} from 'react-native-onesignal';
 
-OneSignal.initialize(process.env.EXPO_PUBLIC_ONE_SIGNAL_API_KEY || '')
+import { ONE_SIGNAL_APP_ID } from '@env'
+
+OneSignal.initialize(ONE_SIGNAL_APP_ID)
+OneSignal.Notifications.requestPermission(true)
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
